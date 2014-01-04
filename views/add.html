@@ -1,0 +1,11 @@
+<% include header.html %>
+<script src="js/add.js"></script>
+
+<div class="add">
+<form action="/add" method="POST">
+    <label for="entry">Dodaj:</label>
+    <textarea name="entry" type="text" id="entry"></textarea>
+    <button type="submit">Send your entry</button>
+</form>
+</div>
+<% include footer.html %>

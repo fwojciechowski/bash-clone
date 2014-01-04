@@ -1,0 +1,23 @@
+<% include header.html %>
+
+<script src="/js/vote.js"></script>
+
+<% entries.forEach(function(entry) { %>
+      <div id="<%= entry.id %>" class="entry">
+          <div class="bar">
+              <span class="date"><%= dateModifier(entry.createdAt) %></span>
+              <a class="entry-id" href="/entry/<%= entry.id %>">#<%= entry.id %></a>
+
+                  <a class="vote plus" href="/up/<%= entry.id %>">+</a>
+                  <span class="likes-count"><%= entry.likes %></span>
+                  <a class="vote minus" href="/down/<%= entry.id %>">-</a>
+
+
+          </div>
+          <div class="quote">
+              <%= entry.content %>
+          </div>
+      </div>
+<% }) %>
+
+<% include footer.html %>

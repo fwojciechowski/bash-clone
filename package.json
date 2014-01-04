@@ -1,0 +1,19 @@
+{
+    "name"          : "bash-clone",
+    "description"   : "clone of the bash site",
+    "version"       : "0.0.1",
+    "author"        : "Filip Wojciechowski",
+    "private"       : true,
+    "dependencies"  : {
+        "sequelize" : "1.6.0",
+        "sqlite3"   : "2.1.7",
+        "express"   : "~3.4.7",
+        "ejs"       : "~0.8.5",
+        "moment"    : "~2.5.0"
+    },
+    "license"       : "MIT",
+    "engines"       : {
+        "node"      : "0.10.24",
+        "npm"       : "1.3.21"
+    }
+}

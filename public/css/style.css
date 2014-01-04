@@ -1,0 +1,127 @@
+/*----------------*/
+/* BASICS         */
+/*----------------*/
+@font-face {
+    font-family: OxygenMono;
+    src: url("/fonts/Oxygen_Mono/OxygenMono-Regular.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+ul {
+    list-style: none;
+}
+
+a:active,
+a:visited,
+a:link {
+    text-decoration: none;
+}
+
+/*----------------*/
+/* HEADER         */
+/*----------------*/
+
+header {
+    width: 100%;
+    background-color: black;
+    color: white;
+    height: 50px;
+}
+
+.logo {
+    width: 25%;
+    height:inherit;
+    float: left;
+    font-size: 2em;
+}
+
+.logo a:active,
+.logo a:visited,
+.logo a:link {
+    color: white;
+    text-decoration: none;
+}
+
+header nav {
+    float:left;
+    color:white;
+    width: 75%;
+    height: inherit;
+    display:block;
+}
+
+header nav a:active,
+header nav a:visited,
+header nav a:link {
+    color: white;
+
+}
+
+header nav ul {
+    text-align: right;
+}
+
+header nav li {
+    display: inline-block;
+    margin-right: 2em;
+}
+
+/*----------------*/
+/* MAIN           */
+/*----------------*/
+
+section {
+    min-height: 300px;
+    width: 100%
+}
+
+.entry {
+    border: 2px black solid;
+}
+
+.entry .bar {
+    width: inherit;
+    height: 1.5em;
+    background: rgb(200,200,200);
+    font-weight: bold;
+}
+
+.entry .bar .entry-id {
+    margin: 0 0.25em;
+}
+
+.entry .vote {
+    margin: 0 0.25em;
+    padding: 0 0.25em;
+}
+
+.entry .date {
+    float:right;
+    margin: 0 0.25em;
+}
+
+.entry .quote {
+    padding: 0.5em;
+    font-family: OxygenMono, "Courier New", sans-serif;
+    font-size: 0.9em;
+}
+
+/*----------------*/
+/* FOOTER         */
+/*----------------*/
+
+footer {
+    width: 100%;
+    background-color: black;
+    color: white;
+    height: 50px;
+    bottom: 0;
+}
