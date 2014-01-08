@@ -29,5 +29,5 @@ var add = {
 }};
 
 $(document).ready(function(){
-   add.init();//
+   add.init();
 });

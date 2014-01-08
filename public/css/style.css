@@ -33,7 +33,7 @@ header {
     width: 100%;
     background-color: black;
     color: white;
-    height: 50px;
+    height: 40px;
 }
 
 .logo {
@@ -122,6 +122,6 @@ footer {
     width: 100%;
     background-color: black;
     color: white;
-    height: 50px;
+    height: 40px;
     bottom: 0;
 }

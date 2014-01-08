@@ -1,6 +1,7 @@
 <% include header.html %>
 
 <script src="/js/vote.js"></script>
+<script src="/js/quote.js"></script>
 
 <% entries.forEach(function(entry) { %>
       <div id="<%= entry.id %>" class="entry">
@@ -14,9 +15,7 @@
 
 
           </div>
-          <div class="quote">
-              <%= entry.content %>
-          </div>
+          <div class="quote"><%= entry.content -%></div>
       </div>
 <% }) %>
 

@@ -18,5 +18,5 @@ var vote = {
 };
 
 $(document).ready(function(){
-    vote.init();//
+    vote.init();
 });
