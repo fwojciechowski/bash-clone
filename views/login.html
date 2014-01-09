@@ -1,5 +1,21 @@
 <% include header.html %>
 
-login
+<% if (message) { %>
+<p><%= message %></p>
+<% } %>
+
+<form action="/login" method="POST">
+    <div>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username"/><br/>
+    </div>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Submit"/>
+    </div>
+</form>
 
 <% include footer.html %>

@@ -14,7 +14,7 @@ var add = {
                 ),
                 dataType: 'json',
                 contentType: 'application/json',
-                timeout: 3000,
+                timeout: 5000,
                 success: function(){
                     console.log("Success!");
                     form.remove();

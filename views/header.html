@@ -17,7 +17,12 @@
             <li><a href="/latest">Najnowsze</a></li>
             <li><a href="/top">Top</a></li>
             <li><a href="/add">Dodaj</a></li>
+            <% if (!user) { %>
             <li><a href="/login">Login</a></li>
+            <% } else { %>
+            <li><a href="/moderate">Moderowanie</a></li>
+            <li><a href="/logout">Logout</a></li>
+            <% } %>
         </ul>
     </nav>
 </header>

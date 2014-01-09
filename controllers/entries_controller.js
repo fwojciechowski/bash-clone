@@ -9,9 +9,7 @@ module.exports = function (app) {
 
     return {
         create: function (req, res) {
-            //console.log(req.body[0].value);
             res.send({});
-            res.end();
             Entry.create({
                 content: req.body[0].value,
                 likes: 0,
@@ -19,15 +17,17 @@ module.exports = function (app) {
             });
         },
         latest: function (req, res) {
-            Entry.findAll({where: {accepted: false}, order: 'createdAt DESC'}).success(function (entries) {
+            Entry.findAll({where: {accepted: true}, order: 'createdAt DESC'}).success(function (entries) {
                 res.render('quote', {
+                    user: req.user,
                     entries: entries
                 });
             });
         },
         top: function (req, res) {
-            Entry.findAll({where: {accepted: false}, order: 'likes DESC'}).success(function (entries) {
+            Entry.findAll({where: {accepted: true}, order: 'likes DESC'}).success(function (entries) {
                 res.render('quote', {
+                    user: req.user,
                     entries: entries
                 });
             });
@@ -35,11 +35,25 @@ module.exports = function (app) {
         single: function (req, res) {
             var id = req.params.id;
             Entry.find({where: {id: id}}).success(function (entry) {
-                res.render('quote', {
-                    entries: [entry]
-                });
+                if (entry.accepted || req.user) {
+                    res.render('quote', {
+                        user: req.user,
+                        entries: [entry]
+                    });
+                } else {
+                    res.redirect('/');
+                }
+
             });
 
+        },
+        moderate: function (req, res) {
+            Entry.findAll({where: {accepted: false}}).success(function (entries) {
+                res.render('quote', {
+                    user: req.user,
+                    entries: entries
+                });
+            });
         },
         voteUpAction: function (req, res) {
             var id = req.params.id;
@@ -47,7 +61,6 @@ module.exports = function (app) {
                 res.send({
                     likes: entry.voteUp()
                 });
-                res.end();
             });
         },
         voteDownAction: function (req, res) {
@@ -56,7 +69,24 @@ module.exports = function (app) {
                 res.send({
                     likes: entry.voteDown()
                 });
-                res.end();
+            });
+        },
+        acceptAction: function (req, res) {
+            var id = req.params.id;
+            Entry.find({where: {id: id}}).success(function (entry) {
+                res.send({
+                    entryStatus: entry.accept()
+                });
+            });
+        },
+        deleteAction: function (req, res) {
+            var id = req.params.id;
+            Entry.find({where: {id: id}}).success(function (entry) {
+                entry.destroy().success(function() {
+                    res.send({
+                        entryStatus : "deleted"
+                    });
+                });
             });
         }
 

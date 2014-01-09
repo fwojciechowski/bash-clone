@@ -9,6 +9,7 @@ var vote = {
             $.ajax({
                 url: $(this).attr("href"),
                 dataType: "json",
+                timeout: 5000,
                 success: function(response) {
                     count.html(response.likes);
                 }

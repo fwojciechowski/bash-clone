@@ -19,6 +19,11 @@ module.exports = function(sequelize, DataTypes) {
                 this.likes--;
                 this.save();
                 return this.likes;
+            },
+            accept : function() {
+                this.accepted = true;
+                this.save();
+                return "accepted";
             }
         }
     });
