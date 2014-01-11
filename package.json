@@ -5,8 +5,8 @@
     "author"        : "Filip Wojciechowski",
     "private"       : true,
     "dependencies"  : {
-        "sequelize"         : "1.6.0",
-        "sqlite3"           : "2.1.7",
+        "sequelize"         : "~1.7.0",
+        "sqlite3"           : "~2.1.7",
         "express"           : "~3.4.7",
         "ejs"               : "~0.8.5",
         "moment"            : "~2.5.0",

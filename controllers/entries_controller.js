@@ -1,11 +1,32 @@
 /**
  * Created by vic on 1/1/14.
  */
-
+var settings = require('../config/settings');
 
 module.exports = function (app) {
 
     var Entry = app.get('models').Entry;
+
+    var paginator = function(req, res, order) {
+        var page = parseInt(req.params.page);
+        var limit = settings.pagination.numberOfElementsOnPage;
+        Entry.findAndCountAll({
+            where: {accepted: true},
+            order: order,
+            offset: (page - 1) * limit,
+            limit: limit
+        }).success(function (result){
+                res.render('quote', {
+                    user: req.user,
+                    entries: result.rows,
+                    totalEntries: result.count,
+                    limit: limit,
+                    currentPage: page,
+                    urlType: req.url.replace(/[0-9]+/, ''),
+                    paginate: true
+                });
+            });
+    };
 
     return {
         create: function (req, res) {
@@ -16,21 +37,11 @@ module.exports = function (app) {
                 accepted: false
             });
         },
-        latest: function (req, res) {
-            Entry.findAll({where: {accepted: true}, order: 'createdAt DESC'}).success(function (entries) {
-                res.render('quote', {
-                    user: req.user,
-                    entries: entries
-                });
-            });
+        latest: function(req, res) {
+            paginator(req, res, 'createdAt DESC');
         },
         top: function (req, res) {
-            Entry.findAll({where: {accepted: true}, order: 'likes DESC'}).success(function (entries) {
-                res.render('quote', {
-                    user: req.user,
-                    entries: entries
-                });
-            });
+            paginator(req, res, 'likes DESC');
         },
         single: function (req, res) {
             var id = req.params.id;
@@ -38,7 +49,8 @@ module.exports = function (app) {
                 if (entry.accepted || req.user) {
                     res.render('quote', {
                         user: req.user,
-                        entries: [entry]
+                        entries: [entry],
+                        paginate: false
                     });
                 } else {
                     res.redirect('/');
@@ -51,7 +63,8 @@ module.exports = function (app) {
             Entry.findAll({where: {accepted: false}}).success(function (entries) {
                 res.render('quote', {
                     user: req.user,
-                    entries: entries
+                    entries: entries,
+                    paginate: false
                 });
             });
         },

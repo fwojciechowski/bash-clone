@@ -9,6 +9,13 @@ var settings = {
         storage : "test.db",
         user: null,
         pass: null
+    },
+    pagination : {
+        numberOfElementsOnPage : 5,
+        numberOfPrevPages   : 2,
+        numberOfNextPages   : 2,
+        numberOfFirstPages  : 2,
+        numberOfLastPages   : 2
     }
 };
 

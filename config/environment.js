@@ -10,9 +10,9 @@ var flash = require('connect-flash');
 
 module.exports = function (app) {
     // VIEWS
-    app.engine('.html', require('ejs').__express);
+    app.engine('ejs', require('ejs').__express);
     app.set('views', settings.path + '/views');
-    app.set('view engine', 'html');
+    app.set('view engine', 'ejs');
 
     app.use(express.compress());
     app.use(express.static(settings.path + '/public'));
@@ -37,6 +37,7 @@ module.exports = function (app) {
     app.locals({
         dateModifier : function(date) {
             return moment(date).fromNow();
-        }
+        },
+        paginatePages : require('../pagination')
     });
 };

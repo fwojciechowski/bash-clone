@@ -3,8 +3,6 @@
  */
 var controllers = require('../controllers');
 
-
-
 module.exports = function (app) {
     var passport = app.get('passport');
 
@@ -19,9 +17,17 @@ module.exports = function (app) {
     var entries = controllers.entries(app);
     app.post('/add', entries.create);
 
-    app.get('/latest', entries.latest);
+    app.get('/latest', function(req, res){
+        res.redirect('/latest/1');
+    });
 
-    app.get('/top', entries.top);
+    app.get('/latest/:page', entries.latest);   // TODO: zabezpieczenie regexem
+
+    app.get('/top', function(req, res){
+        res.redirect('/top/1');
+    });
+
+    app.get('/top/:page', entries.top);
 
     app.get('/entry/:id', entries.single);
 
@@ -55,7 +61,7 @@ module.exports = function (app) {
     });
 
     app.get('*', function(req, res){
-        res.render('404');
+        res.render('404', {user: req.user});
     });
 
     function ensureAuthenticated(req, res, next) {

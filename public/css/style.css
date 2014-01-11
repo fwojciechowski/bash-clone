@@ -114,6 +114,10 @@ section {
     font-size: 0.9em;
 }
 
+.paginator li {
+    display: inline-block;
+}
+
 /*----------------*/
 /* FOOTER         */
 /*----------------*/

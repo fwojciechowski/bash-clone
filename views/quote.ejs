@@ -1,0 +1,69 @@
+<% include header.ejs %>
+
+<script src="/js/vote.js"></script>
+<script src="/js/quote.js"></script>
+
+<% if (user) { %>
+<script src="/js/moder.js"></script>
+<% } %>
+
+<% entries.forEach(function(entry) { %>
+<div id="<%= entry.id %>" class="entry">
+    <div class="bar">
+        <span class="date"><%= dateModifier(entry.createdAt) %></span>
+        <a class="entry-id" href="/entry/<%= entry.id %>">#<%= entry.id %></a>
+        <a class="vote plus" href="/up/<%= entry.id %>">+</a>
+        <span class="likes-count"><%= entry.likes %></span>
+        <a class="vote minus" href="/down/<%= entry.id %>">-</a>
+        <% if (user) { %>
+        <% if (!entry.accepted) { %>
+        <a class="accept moder" href="/accept/<%= entry.id %>">ACCEPT</a>
+        <a class="reject moder" href="/delete/<%= entry.id %>">REJECT</a>
+        <% } else { %>
+        <a class="reject moder" href="/delete/<%= entry.id %>">DELETE</a>
+        <% } %>
+        <% } %>
+    </div>
+    <div class="quote"><%= entry.content %></div>
+</div>
+<% }) %>
+
+<% if (paginate) { %>
+
+<% var pagination = paginatePages(currentPage, limit, totalEntries) -%>
+
+<nav class="paginator">
+    <ul>
+        <% console.log(pagination) %>
+
+        <% pagination.firstPages.forEach(function(page) { %>
+        <li><a href="<% urlType %><%= page %>"><%= page %></a></li>
+        <% }) %>
+
+        <% if (pagination.firstPages.length) { %>
+        <span>...</span>
+        <% } %>
+
+        <% pagination.prevPages.forEach(function(page) { %>
+        <li><a href="<% urlType %><%= page %>"><%= page %></a></li>
+        <% }) %>
+
+        <li><%= currentPage %></li>
+
+        <% pagination.nextPages.forEach(function(page) { %>
+        <li><a href="<% urlType %><%= page %>"><%= page %></a></li>
+        <% }) %>
+
+        <% if (pagination.lastPages.length) { %>
+        <span>...</span>
+        <% } %>
+
+        <% pagination.lastPages.forEach(function(page) { %>
+        <li><a href="<% urlType %><%= page %>"><%= page %></a></li>
+        <% }) %>
+    </ul>
+</nav>
+
+<% } %>
+
+<% include footer.ejs %>
