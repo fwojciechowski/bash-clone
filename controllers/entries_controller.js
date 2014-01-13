@@ -29,7 +29,7 @@ module.exports = function (app) {
     };
 
     return {
-        create: function (req, res) {
+        createEntry: function (req, res) {
             res.send({});
             Entry.create({
                 content: req.body[0].value,
@@ -71,6 +71,7 @@ module.exports = function (app) {
         voteUpAction: function (req, res) {
             var id = req.params.id;
             Entry.find({where: {id: id}}).success(function (entry) {
+                res.cookie(id, null);
                 res.send({
                     likes: entry.voteUp()
                 });
@@ -79,6 +80,7 @@ module.exports = function (app) {
         voteDownAction: function (req, res) {
             var id = req.params.id;
             Entry.find({where: {id: id}}).success(function (entry) {
+                res.cookie(id, null);
                 res.send({
                     likes: entry.voteDown()
                 });

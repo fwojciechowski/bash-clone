@@ -25,7 +25,6 @@ module.exports = function (app) {
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'the truth is out there' }));
 
-
     app.set('passport', passport);
     app.use(flash());
     auth(passport);

@@ -11,7 +11,11 @@ var vote = {
                 dataType: "json",
                 timeout: 5000,
                 success: function(response) {
-                    count.html(response.likes);
+                    if (response.likes) {
+                        count.html(response.likes);
+                    } else {
+                        count.html("Already voted!");
+                    }
                 }
             });
         });

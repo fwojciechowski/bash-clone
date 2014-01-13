@@ -15,13 +15,13 @@ module.exports = function (app) {
     });
 
     var entries = controllers.entries(app);
-    app.post('/add', entries.create);
+    app.post('/add', entries.createEntry);
 
     app.get('/latest', function(req, res){
         res.redirect('/latest/1');
     });
 
-    app.get('/latest/:page', entries.latest);   // TODO: zabezpieczenie regexem
+    app.get('/latest/:page', ensureParamIsANumber, entries.latest);   // TODO: zabezpieczenie regexem
 
     app.get('/top', function(req, res){
         res.redirect('/top/1');
@@ -31,9 +31,9 @@ module.exports = function (app) {
 
     app.get('/entry/:id', entries.single);
 
-    app.get('/up/:id', entries.voteUpAction);
+    app.get('/up/:id', hasAlreadyVoted, entries.voteUpAction);
 
-    app.get('/down/:id', entries.voteDownAction);
+    app.get('/down/:id', hasAlreadyVoted, entries.voteDownAction);
 
     app.get('/accept/:id', ensureAuthenticated, entries.acceptAction);
 
@@ -67,5 +67,24 @@ module.exports = function (app) {
     function ensureAuthenticated(req, res, next) {
         if (req.isAuthenticated()) { return next(); }
         res.redirect('/login');
+    }
+
+    function hasAlreadyVoted(req, res, next) {
+        if (req.cookies[req.params.id]) {
+            res.send({alreadyVoted: true});
+        } else {
+            return next();
+        }
+    }
+
+    function ensureParamIsANumber(req, res, next) {
+        var param = req.params[0];
+        console.log(req.params);
+        if (/^[0-9]/.test(param)) {
+            res.redirect(req.path);
+            console.log(req.path);
+        } else {
+            next();
+        }
     }
 };
