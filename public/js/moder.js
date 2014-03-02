@@ -1,6 +1,3 @@
-/**
- * Created by vic on 1/9/14.
- */
 var moder = {
     init : function() {
         $('.moder').on('click', function(e){

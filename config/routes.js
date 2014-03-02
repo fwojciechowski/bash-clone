@@ -1,13 +1,11 @@
-/**
- * Created by vic on 12/30/13.
- */
 var controllers = require('../controllers');
 
 module.exports = function (app) {
     var passport = app.get('passport');
 
     app.get('/', function (req, res) {
-        res.render('index', { user : req.user });
+        //res.render('index', { user : req.user });
+        res.redirect('/latest/1');
     });
 
     app.get('/add', function(req, res){
@@ -21,7 +19,7 @@ module.exports = function (app) {
         res.redirect('/latest/1');
     });
 
-    app.get('/latest/:page', ensureParamIsANumber, entries.latest);   // TODO: zabezpieczenie regexem
+    app.get('/latest/:page', ensureParamIsANumber, entries.latest);
 
     app.get('/top', function(req, res){
         res.redirect('/top/1');
@@ -56,10 +54,6 @@ module.exports = function (app) {
 
     app.get('/moderate', ensureAuthenticated, entries.moderate);
 
-    app.get('/test', ensureAuthenticated, function(req, res) {
-        res.render('test');
-    });
-
     app.get('*', function(req, res){
         res.render('404', {user: req.user});
     });
@@ -79,10 +73,10 @@ module.exports = function (app) {
 
     function ensureParamIsANumber(req, res, next) {
         var param = req.params[0];
-        console.log(req.params);
+        //console.log(req.params);
         if (/^[0-9]/.test(param)) {
             res.redirect(req.path);
-            console.log(req.path);
+            //console.log(req.path);
         } else {
             next();
         }

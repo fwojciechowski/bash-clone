@@ -1,11 +1,6 @@
 /*----------------*/
 /* BASICS         */
 /*----------------*/
-@font-face {
-    font-family: OxygenMono;
-    src: url("/fonts/Oxygen_Mono/OxygenMono-Regular.ttf");
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -13,6 +8,7 @@
 
 body {
     background-color: whitesmoke;
+    font-family: 'Oxygen Mono', Lucida Console, Monaco, monospace;
 }
 
 ul {
@@ -54,8 +50,8 @@ header nav {
     float:left;
     color:white;
     width: 75%;
-    height: inherit;
     display:block;
+    margin-top: 0.5em;
 }
 
 header nav a:active,
@@ -84,18 +80,41 @@ section {
 }
 
 .entry {
-    border: 2px black solid;
+    border-bottom: 2px black solid;
 }
 
 .entry .bar {
     width: inherit;
     height: 1.5em;
-    background: rgb(200,200,200);
     font-weight: bold;
+
+    /* fallback */
+    background-color: rgb(100,100,100);
+
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0, #969696),
+        color-stop(0.5, #969696),
+        color-stop(1, #F5F5F5)
+    );
+    background: -o-linear-gradient(bottom, #969696 0%, #F5F5F5 100%);
+    background-image: -moz-linear-gradient(bottom, #969696 0%, #F5F5F5 100%);
+    background-image: -webkit-linear-gradient(bottom, #969696 0%, #F5F5F5 100%);
+    background-image: -ms-linear-gradient(bottom, #969696 0%, #F5F5F5 100%);
+    background-image: linear-gradient(to bottom, #969696 0%, #F5F5F5 100%);
 }
 
 .entry .bar .entry-id {
     margin: 0 0.25em;
+}
+
+.entry a:active,
+.entry a:visited,
+.entry a:link {
+    color: black;
+
 }
 
 .entry .vote {
@@ -110,12 +129,27 @@ section {
 
 .entry .quote {
     padding: 0.5em;
-    font-family: OxygenMono, "Courier New", sans-serif;
+    /*font-family: 'Oxygen Mono', "Courier New", sans-serif;*/
+    font-family: Lucida Console, Monaco, monospace;
     font-size: 0.9em;
 }
 
 .paginator li {
     display: inline-block;
+}
+
+.paginator a:active,
+.paginator a:visited,
+.paginator a:link {
+    color: rgb(100,100,100);
+}
+
+.paginator a:hover {
+    color: rgb(150,150,150);
+}
+
+.paginator .current-page {
+    color: black;
 }
 
 /*----------------*/
@@ -128,4 +162,31 @@ footer {
     color: white;
     height: 40px;
     bottom: 0;
+    text-align: center;
+}
+
+footer p {
+    font-size: 20px;
+    padding: 5px 0;
+}
+
+/*----------------*/
+/* MISCELLANEOUS  */
+/*----------------*/
+
+/* ADD */
+.add {
+    text-align: center;
+    margin: 2em 0;
+}
+
+.add textarea {
+    font-family: Lucida Console, Monaco, monospace;
+    padding: 0.5em;
+}
+
+.add button {
+    cursor: pointer;
+    display: block;
+    margin: auto;
 }

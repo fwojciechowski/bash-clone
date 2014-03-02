@@ -1,11 +1,9 @@
-/**
- * Created by vic on 1/3/14.
- */
 var vote = {
     init : function() {
         $(".vote").on('click', function(e) {
             e.preventDefault();
             var count = $(this).siblings(".likes-count");
+            var info = $(this).siblings(".vote-info");
             $.ajax({
                 url: $(this).attr("href"),
                 dataType: "json",
@@ -14,7 +12,7 @@ var vote = {
                     if (response.likes) {
                         count.html(response.likes);
                     } else {
-                        count.html("Already voted!");
+                        info.hide().html("Already voted!").fadeIn();
                     }
                 }
             });

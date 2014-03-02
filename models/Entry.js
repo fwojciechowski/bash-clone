@@ -1,8 +1,3 @@
-/**
- * Created by vic on 12/31/13.
- */
-
-
 module.exports = function(sequelize, DataTypes) {
     return sequelize.define('Entry', {
         content : DataTypes.TEXT,

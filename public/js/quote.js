@@ -1,6 +1,3 @@
-/**
- * Created by vic on 1/5/14.
- */
 function addLineBreak(text) {
     return text.replace(/\r\n/g, '<br />').replace(/[\r\n]/g, '<br />');
 }

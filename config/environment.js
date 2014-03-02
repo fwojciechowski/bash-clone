@@ -1,6 +1,3 @@
-/**
- * Created by vic on 12/30/13.
- */
 var express = require('express');
 var settings = require('./settings');
 var moment = require('moment');
@@ -17,8 +14,6 @@ module.exports = function (app) {
     app.use(express.compress());
     app.use(express.static(settings.path + '/public'));
     app.use(express.logger({ format: 'dev' }));
-    //app.use(express.methodOverride());
-//app.use(express.bodyParser());   // ! NIEZALECANE
     app.use(express.urlencoded());
     app.use(express.json());
 

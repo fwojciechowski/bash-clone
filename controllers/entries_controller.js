@@ -1,6 +1,3 @@
-/**
- * Created by vic on 1/1/14.
- */
 var settings = require('../config/settings');
 
 module.exports = function (app) {

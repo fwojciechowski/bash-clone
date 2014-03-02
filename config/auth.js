@@ -1,13 +1,7 @@
-/**
- * Created by vic on 1/9/14.
- */
-//var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var settings = require('../config/settings');
 
-//hard-coded for simplicity
-var users = [
-    { id: 1, username: 'admin', password: 'admin', email: 'admin@example.com' }
-];
+var users = settings.users;
 
 function findById(id, fn) {
     var idx = id - 1;

@@ -23,6 +23,7 @@
         <a class="reject moder" href="/delete/<%= entry.id %>">DELETE</a>
         <% } %>
         <% } %>
+        <span class="vote-info"></span>
     </div>
     <div class="quote"><%= entry.content %></div>
 </div>
@@ -34,7 +35,7 @@
 
 <nav class="paginator">
     <ul>
-        <% console.log(pagination) %>
+        <% //console.log(pagination) %>
 
         <% pagination.firstPages.forEach(function(page) { %>
         <li><a href="<% urlType %><%= page %>"><%= page %></a></li>
@@ -48,7 +49,7 @@
         <li><a href="<% urlType %><%= page %>"><%= page %></a></li>
         <% }) %>
 
-        <li><%= currentPage %></li>
+        <li class="current-page"><%= currentPage %></li>
 
         <% pagination.nextPages.forEach(function(page) { %>
         <li><a href="<% urlType %><%= page %>"><%= page %></a></li>

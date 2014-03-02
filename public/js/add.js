@@ -1,6 +1,3 @@
-/**
- * Created by vic on 12/28/13.
- */
 var add = {
     init: function(){
         $('.add form').on('submit', function(event){
@@ -16,7 +13,7 @@ var add = {
                 contentType: 'application/json',
                 timeout: 5000,
                 success: function(){
-                    console.log("Success!");
+                    //console.log("Success!");
                     form.remove();
                     $('.add').hide().append('<p>Thank you.</p>').fadeIn();
                 },
